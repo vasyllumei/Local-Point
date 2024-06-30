@@ -27,7 +27,7 @@ function ResultLocation({ result, showDir = false }) {
           bg-[#B7B7A4] hover:scale-110 transition-all mt-[20px] cursor-pointer"
     >
       <Image
-        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=AIzaSyDk3Vr4aCA7wjbbX2r7Ikd8eUuhLGcERoE`} //test key
+        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
         alt={result.name}
         width={180}
         height={80}
