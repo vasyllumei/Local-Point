@@ -15,16 +15,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # Add commands here to install necessary tools or dependencies
-          # For example, for a static site, this might just be copying files
-          echo "Installing dependencies..."
-
-      - name: Build and deploy
-        run: |
-          # Command for building or compiling your project
-          # For example:
-          # npm run build or another command relevant to your project
-          echo "Building project..."
+          npm install
 
       - name: Create .env file
         run: |
@@ -32,8 +23,14 @@ jobs:
           echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
           echo "NEXT_PUBLIC_GOOGLE_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_API_KEY }}" >> .env
+          # Add echo command to verify the content of .env file
+          echo ".env file content:"
+          cat .env  # Display the contents of .env file
+
+      - name: Build and deploy
+        run: |
+          npm run build
 
       - name: Deploy to server or publish artifacts
         run: |
-          # Commands for deploying your project, e.g., uploading to a server or publishing artifacts
           echo "Deploying project..."
