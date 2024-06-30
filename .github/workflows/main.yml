@@ -13,7 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Steps for installing dependencies, building, and deploying
       - name: Install dependencies
         run: |
           # Add commands here to install necessary tools or dependencies
@@ -27,7 +26,6 @@ jobs:
           # npm run build or another command relevant to your project
           echo "Building project..."
 
-      # Example of creating a .env file if required for your project
       - name: Create .env file
         run: |
           echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
@@ -35,8 +33,6 @@ jobs:
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
           echo "NEXT_PUBLIC_GOOGLE_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_API_KEY }}" >> .env
 
-      # Final steps for deploying your project, such as uploading to a server or publishing artifacts
-      # These steps will depend on how you deploy your project
       - name: Deploy to server or publish artifacts
         run: |
           # Commands for deploying your project, e.g., uploading to a server or publishing artifacts
