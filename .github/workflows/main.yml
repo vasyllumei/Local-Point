@@ -1,4 +1,4 @@
-name: My Workflow
+name: Generate .env File
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  my-job:
+  generate-env:
     runs-on: ubuntu-latest
     env:
       GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
@@ -15,5 +15,12 @@ jobs:
       NEXT_PUBLIC_GOOGLE_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_API_KEY }}
 
     steps:
-      - name: My Step
-        run: echo $GOOGLE_CLIENT_ID
+      - name: Create .env file
+        run: |
+          echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> .env
+          echo "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> .env
+          echo "GOOGLE_API_KEY=${GOOGLE_API_KEY}" >> .env
+          echo "NEXT_PUBLIC_GOOGLE_API_KEY=${NEXT_PUBLIC_GOOGLE_API_KEY}" >> .env
+
+      - name: Display .env contents
+        run: cat .env
