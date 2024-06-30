@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
             <LocationContext.Provider value={{ location, setLocation }}>
               <LoadScript
                 libraries={libraries}
-                googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+                googleMapsApiKey='AIzaSyDk3Vr4aCA7wjbbX2r7Ikd8eUuhLGcERoE'  // for test
               >
                 {children}
               </LoadScript>

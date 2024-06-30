@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const BASE_URL = "https://maps.googleapis.com/maps/api/place";
 
 async function fetchPlaces(category, radius, lat, lng, pageToken = "") {
-  let url = `${BASE_URL}/textsearch/json?query=${category}&location=${lat},${lng}&radius=${radius}&key=${process.env.GOOGLE_API_KEY}`;
+  let url = `${BASE_URL}/textsearch/json?query=${category}&location=${lat},${lng}&radius=${radius}&key=AIzaSyDk3Vr4aCA7wjbbX2r7Ikd8eUuhLGcERoE`;
 
   if (pageToken) {
     url += `&pagetoken=${pageToken}`;
