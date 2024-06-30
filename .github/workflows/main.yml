@@ -3,7 +3,7 @@ name: Run Tests on Push to Develop
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   test-app:
