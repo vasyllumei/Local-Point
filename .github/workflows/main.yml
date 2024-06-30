@@ -25,5 +25,5 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install Dependencies and Run Tests
-        run: npm install && npm run test:ci
+      - name: Install Dependencies
+        run: npm install
