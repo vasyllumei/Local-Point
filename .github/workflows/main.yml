@@ -13,14 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      # Install Node.js if necessary
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+      # Install dependencies and build the project
+      - name: Install dependencies and build
+        run: |
+          npm install  # Or yarn install, depending on your package manager
+          npm run build  # Command to build your Next.js project
 
+      # Create .env file for Google API keys
       - name: Create .env file
         run: |
           echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
@@ -28,10 +33,16 @@ jobs:
           echo "GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" >> .env
           echo "NEXT_PUBLIC_GOOGLE_API_KEY=${{ secrets.NEXT_PUBLIC_GOOGLE_API_KEY }}" >> .env
 
+      # Verify .env file contents
       - name: Verify .env file contents
         run: |
           echo ".env file content:"
           cat .env
 
-      - name: Build and deploy
-        run: npm run build
+      # Deploy your project - Adapt this step based on your deployment method
+      # For example, deploying to Vercel
+      # - name: Deploy to Vercel
+      #   run: npx vercel --token ${{ secrets.VERCEL_TOKEN }}
+
+      # Or deploy using another method as per your project's setup
+
