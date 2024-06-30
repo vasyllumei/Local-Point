@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Install dependencies
         run: npm install
 
@@ -25,7 +30,3 @@ jobs:
 
       - name: Build and deploy
         run: npm run build
-
-      - name: Show build error log if build fails
-        if: failure()
-        run: cat /home/runner/.npm/_logs/*-debug.log
