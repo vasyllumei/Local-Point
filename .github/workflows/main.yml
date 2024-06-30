@@ -1,0 +1,29 @@
+name: Run Tests on Push to Develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  test-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create .env.test File
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_DEBUG: false
+          envkey_PORT: 3000
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          NEXT_PUBLIC_GOOGLE_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_API_KEY }}
+          file_name: .env.test
+          fail_on_empty: false
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies and Run Tests
+        run: npm install && npm run test:ci
