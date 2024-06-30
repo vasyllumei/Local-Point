@@ -16,12 +16,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Используйте ту же версию, что и локально
+          node-version: '18'
 
-      - name: Install dependencies and build
-        run: |
-          npm install
-          npm run build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
 
       - name: Create .env file
         run: |
@@ -35,9 +36,15 @@ jobs:
           echo ".env file content:"
           cat .env
 
-      # Deploy your project - Adapt this step based on your deployment method
-      # For example, deploying to Vercel
+      - name: Check if .env file exists
+        run: |
+          if [ -f .env ]; then
+            echo ".env file created successfully."
+          else
+            echo "Error: .env file not created."
+            exit 1
+          fi
+
+      # Add deployment step here based on your deployment method
       # - name: Deploy to Vercel
       #   run: npx vercel --token ${{ secrets.VERCEL_TOKEN }}
-
-      # Or deploy using another method as per your project's setup
