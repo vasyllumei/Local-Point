@@ -31,5 +31,6 @@ jobs:
       - name: Build and deploy
         run: npm run build
 
-      - name: Start application
-        run: npm start
+      - name: Show build error log if build fails
+        if: failure()
+        run: cat /home/runner/.npm/_logs/*-debug.log
