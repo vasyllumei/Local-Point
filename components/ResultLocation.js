@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { useContext } from "react";
 
 function ResultLocation({ result, showDir = false }) {
-  const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
   const photo_ref = result?.photos ? result?.photos[0]?.photo_reference : "";
   const { location } = useContext(LocationContext);
 
@@ -28,7 +27,7 @@ function ResultLocation({ result, showDir = false }) {
           bg-[#B7B7A4] hover:scale-110 transition-all mt-[20px] cursor-pointer"
     >
       <Image
-        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=${GOOGLE_API_KEY}`}
+        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_ref}&key=AIzaSyDk3Vr4aCA7wjbbX2r7Ikd8eUuhLGcERoE`} //test key
         alt={result.name}
         width={180}
         height={80}
